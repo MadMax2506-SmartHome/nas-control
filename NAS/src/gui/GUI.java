@@ -18,9 +18,6 @@ public class GUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
-	private final static String HOME_CARD = "Home";
-	private final static String SETTINGS_CARD = "Settings";
-	
 	private JPanel contentPane;
 	private JPanel homePanel;
 	private JPanel settingsPanel;
@@ -33,7 +30,7 @@ public class GUI extends JFrame {
 	public GUI(Data data) {
 		setTitle("NAS - Steuerung");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 350, 400);
 		setResizable(false);
 		
 		set_look_and_feel();
@@ -45,12 +42,10 @@ public class GUI extends JFrame {
 		menuBar.add(mnAction);
 		
 		mntmOverview = new JMenuItem("Übersicht");
-		mntmOverview.addActionListener((e) -> set_card(HOME_CARD));
 		mnAction.add(mntmOverview);
 		mnAction.addSeparator();
 		
 		mntmEinstellungen = new JMenuItem("Einstellungen");
-		mntmEinstellungen.addActionListener((e) -> set_card(SETTINGS_CARD));
 		mnAction.add(mntmEinstellungen);
 
 		contentPane = new JPanel();
@@ -58,19 +53,18 @@ public class GUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0));
 		
+		ControlElements controlElements = new ControlElements(contentPane);
+		
 		homePanel = new HomePanel(data);
-		contentPane.add(homePanel, HOME_CARD);
+		contentPane.add(homePanel, controlElements.HOME_CARD);
 		
-		settingsPanel = new SettingsPanel();
-		contentPane.add(settingsPanel, SETTINGS_CARD);
+		settingsPanel = new SettingsPanel(data, controlElements);
+		contentPane.add(settingsPanel, controlElements.SETTINGS_CARD);
 		
-		set_card(HOME_CARD);
-	}
-
-	
-	private void set_card(String name) {
-		CardLayout layout = (CardLayout) contentPane.getLayout();
-		layout.show(contentPane, name);
+		controlElements.set_card(controlElements.HOME_CARD);
+		
+		mntmOverview.addActionListener((e) -> controlElements.set_card(controlElements.HOME_CARD));
+		mntmEinstellungen.addActionListener((e) -> controlElements.set_card(controlElements.SETTINGS_CARD));
 	}
 	
 	private void set_look_and_feel() {

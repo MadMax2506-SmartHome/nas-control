@@ -15,7 +15,9 @@ public class WOL implements Runnable {
 	
 	@Override
 	public void run() {
-		controlElements.set_status("wol");
-		data.get_network_device().wol();
+		if(controlElements.get_status() == controlElements.OFFLINE) {
+			controlElements.set_status(controlElements.WOL);
+			data.get_network_device().wol();
+		}
 	}
 }

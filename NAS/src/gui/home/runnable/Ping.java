@@ -22,9 +22,9 @@ public class Ping implements Runnable {
 	
 	private void choose_status(boolean result) {
 		if(result) {
-			controlElements.set_status("online");
+			controlElements.set_status(controlElements.ONLINE);
 		} else {
-			controlElements.set_status("offline");
+			controlElements.set_status(controlElements.OFFLINE);
 		}
 	}
 	
