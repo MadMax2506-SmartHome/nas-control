@@ -24,7 +24,7 @@ public class SettingsPanel extends JPanel {
 	private JTextField txtMacAddress;
 	private JTextField txtPingTimeout;
 
-	public SettingsPanel(Data data, gui.ControlElements main_controlElements) {
+	public SettingsPanel(Data data, gui.Action main_actions) {
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel main = new JPanel();
@@ -141,7 +141,7 @@ public class SettingsPanel extends JPanel {
 		main.add(txtPingTimeout, gbc_txtPingTimeout);
 		
 		ControlElements controlElements = new ControlElements(txtUsername, pwdUser, txtIpAddress, txtMacAddress, txtPingTimeout);
-		Action actions = new Action(data, main_controlElements, controlElements);
+		Action actions = new Action(data, main_actions, controlElements);
 		
 		btnAbort.addActionListener((e) -> actions.abort());
 		btnSave.addActionListener((e) -> actions.save());

@@ -35,6 +35,10 @@ public class Ping implements Runnable {
 		
 		// Endlosschleife
 		while(run_while) {
+			if(data.are_settings_empty()) {
+				continue;
+			}
+			
 			result_old = result_new;
 			result_new = data.get_network_device().ping();
 			

@@ -39,7 +39,7 @@ public class ControlElements {
 		return txtUsername.getText();
 	}
 	public String get_password() {
-		return pwdUser.getPassword().toString();
+		return String.valueOf(pwdUser.getPassword());
 	}
 	public String get_ip_address() {
 		return txtIpAddress.getText();

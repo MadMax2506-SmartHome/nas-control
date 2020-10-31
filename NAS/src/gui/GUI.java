@@ -53,18 +53,23 @@ public class GUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0));
 		
-		ControlElements controlElements = new ControlElements(contentPane);
+		ControlElements controlElements = new ControlElements(this, contentPane);
+		Action actions = new Action(data, controlElements);
 		
 		homePanel = new HomePanel(data);
 		contentPane.add(homePanel, controlElements.HOME_CARD);
 		
-		settingsPanel = new SettingsPanel(data, controlElements);
+		settingsPanel = new SettingsPanel(data, actions);
 		contentPane.add(settingsPanel, controlElements.SETTINGS_CARD);
 		
-		controlElements.set_card(controlElements.HOME_CARD);
+		mntmOverview.addActionListener((e) -> actions.set_home_card());
+		mntmEinstellungen.addActionListener((e) -> actions.set_settings_card());
 		
-		mntmOverview.addActionListener((e) -> controlElements.set_card(controlElements.HOME_CARD));
-		mntmEinstellungen.addActionListener((e) -> controlElements.set_card(controlElements.SETTINGS_CARD));
+		if(data.are_settings_empty()) {
+			actions.set_settings_card();
+		} else {
+			actions.set_home_card();
+		}
 	}
 	
 	private void set_look_and_feel() {

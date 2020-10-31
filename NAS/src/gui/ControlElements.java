@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.CardLayout;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class ControlElements {
@@ -9,12 +10,18 @@ public class ControlElements {
 	public final String HOME_CARD = "Home";
 	public final String SETTINGS_CARD = "Settings";
 	
+	private JFrame gui;
 	private JPanel contentPane;
 	
-	public ControlElements(JPanel contentPane) {
+	public ControlElements(JFrame gui, JPanel contentPane) {
+		this.gui = gui;
 		this.contentPane = contentPane;
 	}
-
+	
+	public JFrame get_gui_component() {
+		return gui;
+	}
+	
 	public void set_card(String name) {
 		CardLayout layout = (CardLayout) contentPane.getLayout();
 		layout.show(contentPane, name);
