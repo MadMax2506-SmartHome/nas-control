@@ -5,12 +5,12 @@ import java.awt.EventQueue;
 
 import gui.GUI;
 
-public class Main {
+public class App {
 	public static void main(String[] args) {
-		new Main();
+		new App();
 	}
 	
-	public Main() {
+	public App() {
 		Data data = new Data();
 		EventQueue.invokeLater(() -> run_app(data));
 	}

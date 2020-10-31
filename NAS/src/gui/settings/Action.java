@@ -22,7 +22,14 @@ public class Action {
 							controlElements.get_ip_address(),
 							controlElements.get_mac_address(),
 							controlElements.get_ping_timeout());
-		main_actions.set_home_card();
+		
+		if(controlElements.get_ip_address() != data.get_ip_address()
+				|| controlElements.get_mac_address() != data.get_mac_address()) {
+			main_actions.restart();
+		} else {
+			main_actions.set_home_card();
+		}
+		
 	}
 	
 	public void abort() {

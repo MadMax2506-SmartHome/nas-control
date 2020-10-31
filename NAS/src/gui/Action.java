@@ -15,7 +15,7 @@ public class Action {
 	}
 
 	public void exit() {
-		data.write_position(controlElements.get_x(), controlElements.get_y());
+		data.exit(controlElements.get_x(), controlElements.get_y());
 		System.exit(0);
 	}
 	
@@ -29,5 +29,9 @@ public class Action {
 	
 	public void set_settings_card() {
 		controlElements.set_card(controlElements.SETTINGS_CARD);
+	}
+
+	public void restart() {
+		controlElements.restart();
 	}
 }

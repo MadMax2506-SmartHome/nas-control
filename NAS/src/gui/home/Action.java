@@ -10,14 +10,28 @@ public class Action {
 	private WOL wol;
 	private Shutdown shutdown;
 	
+	private Data data; 
+	private ControlElements controlElements;
+	
 	public Action(Data data, ControlElements controlElements) {	
+		this.data = data;
+		this.controlElements = controlElements;
+		
+		refresh();
+	}
+
+	public void refresh() {
+		if(ping != null) {
+			ping.stop();
+		}
+		
 		ping = new Ping(data, controlElements);
 		new Thread(ping).start();
 		
 		wol = new WOL(data, controlElements);
 		shutdown = new Shutdown(data, controlElements);
 	}
-
+	
 	public void wake_on_lan() {
 		new Thread(wol).start();
 	}

@@ -5,6 +5,8 @@ import java.awt.CardLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import app.App;
+
 public class ControlElements {
 
 	public final String HOME_CARD = "Home";
@@ -33,5 +35,12 @@ public class ControlElements {
 	public void set_card(String name) {
 		CardLayout layout = (CardLayout) contentPane.getLayout();
 		layout.show(contentPane, name);
+	}
+
+	public void restart() {
+		gui.setVisible(false);
+		gui.dispose();
+		
+		new App();
 	}
 }

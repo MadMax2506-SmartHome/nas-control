@@ -40,11 +40,20 @@ public class Data {
 	public Data() {
 		check_read_paths();
 		
-		networkDevice = new NetworkDevice(get_mac_address(), get_ip_address());
+		networkDevice 	= new NetworkDevice(get_mac_address(), get_ip_address());
 	}
 	
 	public boolean are_settings_empty() {
 		return empty_settings;
+	}
+	
+	public void exit(int x, int y) {
+		// letzte Position speichern
+		write_position(x, y);
+	}
+	
+	public boolean is_windows() {
+		return System.getProperty("os.name").toLowerCase().contains("win");
 	}
 	
 	// Getter
@@ -67,7 +76,7 @@ public class Data {
 	public NetworkDevice get_network_device() {
 		return networkDevice;
 	}
-
+	
 	public String get_username() {
 		try {
 			return settings_obj.getString(USERNAME_KEY);
