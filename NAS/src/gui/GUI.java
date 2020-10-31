@@ -1,6 +1,8 @@
 package gui;
 
 import java.awt.CardLayout;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -29,8 +31,7 @@ public class GUI extends JFrame {
 	
 	public GUI(Data data) {
 		setTitle("NAS - Steuerung");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 350, 400);
+		setBounds(data.get_x(), data.get_y(), 350, 400);
 		setResizable(false);
 		
 		set_look_and_feel();
@@ -70,6 +71,25 @@ public class GUI extends JFrame {
 		} else {
 			actions.set_home_card();
 		}
+		
+		addWindowListener(new WindowListener() {
+			@Override
+			public void windowOpened(WindowEvent e) {}
+			@Override
+			public void windowIconified(WindowEvent e) {}
+			@Override
+			public void windowDeiconified(WindowEvent e) {}
+			@Override
+			public void windowDeactivated(WindowEvent e) {}
+			@Override
+			public void windowClosing(WindowEvent e) {
+				actions.exit();
+			}
+			@Override
+			public void windowClosed(WindowEvent e) {}
+			@Override
+			public void windowActivated(WindowEvent e) {}
+		});
 	}
 	
 	private void set_look_and_feel() {

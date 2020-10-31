@@ -14,6 +14,11 @@ public class Action {
 		this.controlElements = controlElements;
 	}
 
+	public void exit() {
+		data.write_position(controlElements.get_x(), controlElements.get_y());
+		System.exit(0);
+	}
+	
 	public void set_home_card() {
 		if(data.are_settings_empty()) {
 			JOptionPane.showMessageDialog(controlElements.get_gui_component(), "Sie müssen gülltige Einstellungen angeben!", "Fehlerhafte Einstellungen", JOptionPane.ERROR_MESSAGE);

@@ -23,12 +23,16 @@ public class Data {
 	private final String MAC_ADDRESS_KEY = "macAddress";
 	private final String PING_TIMEOUT_KEY = "pingTimeout";
 	
+	private final String X_KEY = "x";
+	private final String Y_KEY = "y";
+	
 	private boolean empty_settings;
 	
 	private File root_dir;
 	private File settings_file;
 	private File position_file;
 	
+	private JSONObject position_obj;
 	private JSONObject settings_obj;
 	
 	private NetworkDevice networkDevice;
@@ -44,6 +48,22 @@ public class Data {
 	}
 	
 	// Getter
+	public int get_x() {
+		try {
+			return position_obj.getInt(X_KEY);
+		} catch (JSONException e) {
+			return 100;
+		}
+	}
+	
+	public int get_y() {
+		try {
+			return position_obj.getInt(Y_KEY);
+		} catch (JSONException e) {
+			return 100;
+		}
+	}
+	
 	public NetworkDevice get_network_device() {
 		return networkDevice;
 	}
@@ -112,7 +132,51 @@ public class Data {
 			}
 		}
 		
+		read_position();
 		read_settings();
+	}
+	
+	private void read_position() {
+		String result = null;
+		try {
+			BufferedReader br = new BufferedReader( new InputStreamReader( new FileInputStream(position_file) ) );
+			result = br.readLine();
+			br.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			write_empty_position();
+		}
+		
+		if(result != null) {
+			try {
+				position_obj = new JSONObject(result);
+				position_obj.getInt(X_KEY);
+				position_obj.getInt(Y_KEY);
+
+			} catch(Exception e) {
+				e.printStackTrace();
+				write_empty_position();
+			}
+		} else {
+			write_empty_position();
+		}
+	}
+	
+	private void write_empty_position() {
+		write_position(0, 0);
+	}
+	
+	public void write_position(int x, int y) {
+		try {
+			position_obj = new JSONObject();
+			position_obj.put(X_KEY, x);
+			position_obj.put(Y_KEY, y);
+			
+			BufferedWriter bw = new BufferedWriter( new OutputStreamWriter( new FileOutputStream(position_file) ) );
+			bw.write(position_obj.toString());
+			bw.flush();
+			bw.close();
+		} catch (Exception e) {}
 	}
 	
 	private void read_settings() {

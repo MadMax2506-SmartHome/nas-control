@@ -22,6 +22,14 @@ public class ControlElements {
 		return gui;
 	}
 	
+	public int get_x() {
+		return gui.getX();
+	}
+	
+	public int get_y() {
+		return gui.getY();
+	}
+	
 	public void set_card(String name) {
 		CardLayout layout = (CardLayout) contentPane.getLayout();
 		layout.show(contentPane, name);
