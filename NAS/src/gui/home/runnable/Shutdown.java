@@ -25,11 +25,7 @@ public class Shutdown implements Runnable {
 				if(data.is_windows()) {
 					Process process_connect = runtime.exec("net use \\\\" + data.get_ip_address() + " /user:" + data.get_username() + " " + data.get_password());
 					int return_val_connect = process_connect.waitFor();
-					
-					System.out.println("net use \\\\" + data.get_ip_address() + " /user:" + data.get_username() + " " + data.get_password());
-					System.out.println("shutdown /s /t 0 /m " + data.get_ip_address());
-					
-					
+								
 					Process process_shutdown = runtime.exec("shutdown /s /t 0 /m " + data.get_ip_address());
 					int return_val_shutdown = process_shutdown.waitFor();
 

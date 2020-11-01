@@ -32,6 +32,7 @@ public class Action {
 	}
 
 	public void restart() {
+		data.exit(controlElements.get_x(), controlElements.get_y());
 		controlElements.restart();
 	}
 }

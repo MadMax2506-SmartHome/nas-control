@@ -4,6 +4,7 @@ import java.awt.CardLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -31,15 +32,16 @@ public class GUI extends JFrame {
 	
 	public GUI(Data data) {
 		setTitle("NAS - Steuerung");
-		setBounds(data.get_x(), data.get_y(), 350, 400);
+		setBounds(data.get_x(), data.get_y(), 350, 300);
 		setResizable(false);
+		setIconImage(new ImageIcon(data.get_icon_file().toString()).getImage());
 		
 		set_look_and_feel();
 		
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		mnAction = new JMenu("Aktion");
+		mnAction = new JMenu("Menü");
 		menuBar.add(mnAction);
 		
 		mntmOverview = new JMenuItem("Übersicht");
@@ -92,17 +94,21 @@ public class GUI extends JFrame {
 		});
 	}
 	
-	private void set_look_and_feel() {
-		String os = System.getProperty("os.name");
-		
+	private void set_look_and_feel() {		
 		try {
-			switch (os) {
-				case "Linux": UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel"); break;
-				case "Windows": UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); break;
-				default: UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName()); break;
-			}
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
 		} catch (Exception e) {
-			e.printStackTrace();
+			try {
+				UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+			} catch (Exception e2) {
+				try {
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+				} catch (Exception e3) {
+					try {
+						UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+					} catch (Exception e4) {}
+				}
+			}
 		}
 	}
 }

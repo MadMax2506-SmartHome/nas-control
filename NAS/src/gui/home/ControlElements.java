@@ -12,6 +12,7 @@ public class ControlElements {
 	public final String ONLINE = "online";
 	public final String OFFLINE = "offline";
 	
+	private String host;
 	private String status;
 	
 	private JPanel panelStatus;
@@ -20,12 +21,16 @@ public class ControlElements {
 	public ControlElements(JPanel panelStatus, JLabel lblStatus) {
 		this.panelStatus 	= panelStatus;
 		this.lblStatus		= lblStatus;
-		
-		set_status(OFFLINE);
 	}
 	
 	public void set_status(String status) {
 		this.status = status;
+		show_status();
+	}
+	
+	public void set_status(String host, String status) {
+		this.status = status;
+		this.host = host;
 		show_status();
 	}
 	
@@ -36,7 +41,7 @@ public class ControlElements {
 	private void show_status() {
 		switch (status) {
 			case WOL:
-				lblStatus.setText("Das NAS wird hochgefahren...");
+				lblStatus.setText("Das NAS wird geweckt...");
 				lblStatus.setForeground(Color.BLACK);
 				panelStatus.setBackground(new Color(132, 255, 132));
 				break;
@@ -48,13 +53,13 @@ public class ControlElements {
 				break;
 			
 			case ONLINE:
-				lblStatus.setText("Das NAS ist online");
+				lblStatus.setText(host +  " ist online");
 				lblStatus.setForeground(Color.BLACK);
 				panelStatus.setBackground(Color.GREEN);
 				break;
 				
 			case OFFLINE:
-				lblStatus.setText("Das NAS ist offline");
+				lblStatus.setText(host +  " ist offline");
 				lblStatus.setForeground(Color.WHITE);
 				panelStatus.setBackground(Color.RED);
 				break;

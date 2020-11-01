@@ -6,6 +6,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -27,10 +28,13 @@ public class HomePanel extends JPanel {
 		head.add(lblStatus);
 		
 		JPanel main = new JPanel();
-		main.setLayout(new GridBagLayout());
+		GridBagLayout gbl_main = new GridBagLayout();
+		gbl_main.columnWeights = new double[]{0.0, 1.0};
+		main.setLayout(gbl_main);
 		add(main, BorderLayout.CENTER);
 		
-		JButton btnWOL = new JButton("Aufwecken");
+		JButton btnWOL = new JButton(" Aufwecken");
+		btnWOL.setIcon((new ImageIcon(data.get_wol_icon_file().toString())));
 		GridBagConstraints gbc_btnWOL = new GridBagConstraints();
 		gbc_btnWOL.insets = new Insets(30, 5, 5, 0);
 		gbc_btnWOL.ipadx = 10;
@@ -39,9 +43,10 @@ public class HomePanel extends JPanel {
 		gbc_btnWOL.gridy = 0;
 		main.add(btnWOL, gbc_btnWOL);
 		
-		JButton btnShutdown = new JButton("Herunterfahren");
+		JButton btnShutdown = new JButton(" Herunterfahren");
+		btnShutdown.setIcon((new ImageIcon(data.get_shutdown_icon_file().toString())));
 		GridBagConstraints gbc_btnShutdown = new GridBagConstraints();
-		gbc_btnShutdown.insets = new Insets(5, 5, 5, 0);
+		gbc_btnShutdown.insets = new Insets(5, 5, 0, 0);
 		gbc_btnShutdown.ipadx = 10;
 		gbc_btnShutdown.ipady = 10;
 		gbc_btnShutdown.gridx = 0;

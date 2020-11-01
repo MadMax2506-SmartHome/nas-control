@@ -29,6 +29,8 @@ public class Data {
 	private boolean empty_settings;
 	
 	private File root_dir;
+	private File graphic_dir;
+	private File config_dir;
 	private File settings_file;
 	private File position_file;
 	
@@ -117,13 +119,39 @@ public class Data {
 		}
 	}
 	
+	public File get_graphic_dir() {
+		return graphic_dir;
+	}
+	
+	public File get_icon_file() {
+		return new File(graphic_dir.toString() + File.separator + "icon.png");
+	}
+	
+	public File get_wol_icon_file() {
+		return new File(graphic_dir.toString() + File.separator + "wol.png");
+	}
+	
+	public File get_shutdown_icon_file() {
+		return new File(graphic_dir.toString() + File.separator + "shutdown.png");
+	}
+	
 	private void check_read_paths() {
-		root_dir = new File(System.getProperty("user.dir") + File.separator + ".nas");
+		root_dir = new File(System.getProperty("user.dir") + File.separator + "data");
 		if(!root_dir.exists()) {
 			root_dir.mkdir();
 		}
 		
-		settings_file = new File(root_dir.toString() + File.separator + "settings.json");
+		graphic_dir = new File(root_dir.toString() + File.separator + "graphic");
+		if(!graphic_dir.exists()) {
+			graphic_dir.mkdir();
+		}
+		
+		config_dir = new File(root_dir.toString() + File.separator + ".conf");
+		if(!config_dir.exists()) {
+			config_dir.mkdir();
+		}
+		
+		settings_file = new File(config_dir.toString() + File.separator + "settings.json");
 		if(!settings_file.exists()) {
 			try {
 				settings_file.createNewFile();
@@ -132,7 +160,7 @@ public class Data {
 			}
 		}
 		
-		position_file = new File(root_dir.toString() + File.separator + "position.json");
+		position_file = new File(config_dir.toString() + File.separator + "position.json");
 		if(!position_file.exists()) {
 			try {
 				position_file.createNewFile();

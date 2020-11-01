@@ -21,6 +21,7 @@ public class Action {
 	}
 
 	public void refresh() {
+		controlElements.set_status(data.get_ip_address(), controlElements.OFFLINE);
 		if(ping != null) {
 			ping.stop();
 		}

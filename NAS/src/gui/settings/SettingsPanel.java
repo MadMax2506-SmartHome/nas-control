@@ -13,6 +13,7 @@ import app.Data;
 
 import java.awt.Insets;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
 
 public class SettingsPanel extends JPanel {
 	
@@ -28,15 +29,16 @@ public class SettingsPanel extends JPanel {
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel main = new JPanel();
-		add(main, BorderLayout.CENTER);
 		GridBagLayout gbl_main = new GridBagLayout();
 		gbl_main.columnWeights = new double[]{0.0, 1.0};
-		
 		main.setLayout(gbl_main);
+		
+		JScrollPane main_sp = new JScrollPane(main, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		add(main_sp, BorderLayout.CENTER);
 		
 		JLabel lblUsername = new JLabel("Benutzername");
 		GridBagConstraints gbc_lblUsername = new GridBagConstraints();
-		gbc_lblUsername.insets = new Insets(0, 0, 10, 5);
+		gbc_lblUsername.insets = new Insets(0, 10, 10, 5);
 		gbc_lblUsername.anchor = GridBagConstraints.WEST;
 		gbc_lblUsername.gridx = 0;
 		gbc_lblUsername.gridy = 0;
@@ -48,7 +50,7 @@ public class SettingsPanel extends JPanel {
 		gbc_txtUsername.ipady = 5;
 		gbc_txtUsername.ipadx = 5;
 		gbc_txtUsername.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtUsername.insets = new Insets(0, 10, 10, 0);
+		gbc_txtUsername.insets = new Insets(0, 5, 10, 10);
 		gbc_txtUsername.gridx = 1;
 		gbc_txtUsername.gridy = 0;
 		main.add(txtUsername, gbc_txtUsername);
@@ -56,7 +58,7 @@ public class SettingsPanel extends JPanel {
 		JLabel lblPasswort = new JLabel("Passwort");
 		GridBagConstraints gbc_lblPasswort = new GridBagConstraints();
 		gbc_lblPasswort.anchor = GridBagConstraints.WEST;
-		gbc_lblPasswort.insets = new Insets(0, 0, 10, 5);
+		gbc_lblPasswort.insets = new Insets(0, 10, 10, 5);
 		gbc_lblPasswort.gridx = 0;
 		gbc_lblPasswort.gridy = 1;
 		main.add(lblPasswort, gbc_lblPasswort);
@@ -66,7 +68,7 @@ public class SettingsPanel extends JPanel {
 		GridBagConstraints gbc_pwdUser = new GridBagConstraints();
 		gbc_pwdUser.ipady = 5;
 		gbc_pwdUser.ipadx = 5;
-		gbc_pwdUser.insets = new Insets(0, 10, 10, 0);
+		gbc_pwdUser.insets = new Insets(0, 5, 10, 10);
 		gbc_pwdUser.fill = GridBagConstraints.HORIZONTAL;
 		gbc_pwdUser.gridx = 1;
 		gbc_pwdUser.gridy = 1;
@@ -75,7 +77,7 @@ public class SettingsPanel extends JPanel {
 		JLabel lblIpAddress = new JLabel("IP-Adresse");
 		GridBagConstraints gbc_lblIpAddress = new GridBagConstraints();
 		gbc_lblIpAddress.anchor = GridBagConstraints.WEST;
-		gbc_lblIpAddress.insets = new Insets(0, 0, 10, 5);
+		gbc_lblIpAddress.insets = new Insets(0, 10, 10, 5);
 		gbc_lblIpAddress.gridx = 0;
 		gbc_lblIpAddress.gridy = 2;
 		main.add(lblIpAddress, gbc_lblIpAddress);
@@ -85,7 +87,7 @@ public class SettingsPanel extends JPanel {
 		GridBagConstraints gbc_txtIpAddress = new GridBagConstraints();
 		gbc_txtIpAddress.ipady = 5;
 		gbc_txtIpAddress.ipadx = 5;
-		gbc_txtIpAddress.insets = new Insets(0, 10, 10, 0);
+		gbc_txtIpAddress.insets = new Insets(0, 5, 10, 10);
 		gbc_txtIpAddress.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtIpAddress.gridx = 1;
 		gbc_txtIpAddress.gridy = 2;
@@ -94,17 +96,16 @@ public class SettingsPanel extends JPanel {
 		JLabel lblMacAddress = new JLabel("Mac-Adresse");
 		GridBagConstraints gbc_lblMacAddress = new GridBagConstraints();
 		gbc_lblMacAddress.anchor = GridBagConstraints.WEST;
-		gbc_lblMacAddress.insets = new Insets(0, 0, 10, 5);
+		gbc_lblMacAddress.insets = new Insets(0, 10, 10, 5);
 		gbc_lblMacAddress.gridx = 0;
 		gbc_lblMacAddress.gridy = 3;
 		main.add(lblMacAddress, gbc_lblMacAddress);
 		
 		txtMacAddress = new JTextField();
-		txtMacAddress.setColumns(10);
 		GridBagConstraints gbc_txtMacAddress = new GridBagConstraints();
 		gbc_txtMacAddress.ipadx = 5;
 		gbc_txtMacAddress.ipady = 5;
-		gbc_txtMacAddress.insets = new Insets(0, 10, 10, 0);
+		gbc_txtMacAddress.insets = new Insets(0, 5, 10, 10);
 		gbc_txtMacAddress.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtMacAddress.gridx = 1;
 		gbc_txtMacAddress.gridy = 3;
@@ -124,7 +125,7 @@ public class SettingsPanel extends JPanel {
 		JLabel lblPingtimeout = new JLabel("Ping-Timeout (ms)");
 		GridBagConstraints gbc_lblPingtimeout = new GridBagConstraints();
 		gbc_lblPingtimeout.anchor = GridBagConstraints.WEST;
-		gbc_lblPingtimeout.insets = new Insets(0, 0, 10, 5);
+		gbc_lblPingtimeout.insets = new Insets(0, 10, 10, 5);
 		gbc_lblPingtimeout.gridx = 0;
 		gbc_lblPingtimeout.gridy = 4;
 		main.add(lblPingtimeout, gbc_lblPingtimeout);
@@ -132,7 +133,7 @@ public class SettingsPanel extends JPanel {
 		txtPingTimeout = new JTextField();
 		txtPingTimeout.setColumns(10);
 		GridBagConstraints gbc_txtPingTimeout = new GridBagConstraints();
-		gbc_txtPingTimeout.insets = new Insets(0, 10, 5, 0);
+		gbc_txtPingTimeout.insets = new Insets(0, 5, 5, 10);
 		gbc_txtPingTimeout.ipady = 5;
 		gbc_txtPingTimeout.ipadx = 5;
 		gbc_txtPingTimeout.fill = GridBagConstraints.HORIZONTAL;
