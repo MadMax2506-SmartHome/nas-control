@@ -1,5 +1,5 @@
 # Compiled class file
-./NAS/.nas/
+./NAS/data/.*
 *.class
 
 # Log file
