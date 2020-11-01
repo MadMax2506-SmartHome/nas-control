@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.nio.file.Paths;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -136,11 +137,11 @@ public class Data {
 	}
 	
 	private void check_read_paths() {
-		root_dir = new File(System.getProperty("user.dir") + File.separator + "data");
+		root_dir = new File(Paths.get("").toFile().getAbsoluteFile() + File.separator + "data");
 		if(!root_dir.exists()) {
 			root_dir.mkdir();
 		}
-		
+		System.out.println(Paths.get("").toFile().getAbsoluteFile());
 		graphic_dir = new File(root_dir.toString() + File.separator + "graphic");
 		if(!graphic_dir.exists()) {
 			graphic_dir.mkdir();
