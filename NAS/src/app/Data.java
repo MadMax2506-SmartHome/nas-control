@@ -141,7 +141,7 @@ public class Data {
 		if(!root_dir.exists()) {
 			root_dir.mkdir();
 		}
-		System.out.println(Paths.get("").toFile().getAbsoluteFile());
+		
 		graphic_dir = new File(root_dir.toString() + File.separator + "graphic");
 		if(!graphic_dir.exists()) {
 			graphic_dir.mkdir();
