@@ -20,8 +20,7 @@ public class Action {
 		data.write_settings( controlElements.get_username(),
 							controlElements.get_password(),
 							controlElements.get_ip_address(),
-							controlElements.get_mac_address(),
-							controlElements.get_ping_timeout());
+							controlElements.get_mac_address());
 		
 		if(controlElements.get_ip_address() != data.get_ip_address()
 				|| controlElements.get_mac_address() != data.get_mac_address()) {
@@ -42,6 +41,5 @@ public class Action {
 		controlElements.set_password(data.get_password());
 		controlElements.set_ip_address(data.get_ip_address());
 		controlElements.set_mac_address(data.get_mac_address());
-		controlElements.set_ping_timeout(data.get_ping_timeout());
 	}
 }

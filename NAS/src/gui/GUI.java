@@ -59,7 +59,7 @@ public class GUI extends JFrame {
 		ControlElements controlElements = new ControlElements(this, contentPane);
 		Action actions = new Action(data, controlElements);
 		
-		homePanel = new HomePanel(data);
+		homePanel = new HomePanel(data, this);
 		contentPane.add(homePanel, controlElements.HOME_CARD);
 		
 		settingsPanel = new SettingsPanel(data, actions);

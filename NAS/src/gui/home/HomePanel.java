@@ -12,20 +12,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import app.Data;
+import gui.GUI;
 
 public class HomePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	public HomePanel(Data data) {
+	public HomePanel(Data data, GUI gui) {
 		setLayout(new BorderLayout(0, 0));
-		
-		JPanel head = new JPanel();
-		add(head, BorderLayout.NORTH);
-		
-		JLabel lblStatus = new JLabel("----");
-		lblStatus.setFont(new Font("Dialog", Font.BOLD, 16));
-		head.add(lblStatus);
 		
 		JPanel main = new JPanel();
 		GridBagLayout gbl_main = new GridBagLayout();
@@ -53,8 +47,7 @@ public class HomePanel extends JPanel {
 		gbc_btnShutdown.gridy = 1;
 		main.add(btnShutdown, gbc_btnShutdown);
 		
-		ControlElements controlElements = new ControlElements(head, lblStatus);
-		Action action = new Action(data, controlElements);
+		Action action = new Action(data, gui);
 		btnWOL.addActionListener((e) -> action.wake_on_lan());
 		btnShutdown.addActionListener((e) -> action.shutdown());
 	}

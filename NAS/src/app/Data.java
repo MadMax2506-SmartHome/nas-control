@@ -21,7 +21,6 @@ public class Data {
 	private final String PASSWORD_KEY = "password";
 	private final String IP_ADDRESS_KEY = "ipAddress";
 	private final String MAC_ADDRESS_KEY = "macAddress";
-	private final String PING_TIMEOUT_KEY = "pingTimeout";
 	
 	private final String X_KEY = "x";
 	private final String Y_KEY = "y";
@@ -108,14 +107,6 @@ public class Data {
 			return settings_obj.getString(MAC_ADDRESS_KEY);
 		} catch (JSONException e) {
 			return "";
-		}
-	}
-	
-	public int get_ping_timeout() {
-		try {
-			return Integer.parseInt(settings_obj.getString(PING_TIMEOUT_KEY));
-		} catch (JSONException e) {
-			return NetworkDevice.TIMEOUT;
 		}
 	}
 	
@@ -234,13 +225,11 @@ public class Data {
 				String password = settings_obj.getString(PASSWORD_KEY);
 				String ipAddress = settings_obj.getString(IP_ADDRESS_KEY);
 				String macAddress = settings_obj.getString(MAC_ADDRESS_KEY);
-				int pingTimeout = settings_obj.getInt(PING_TIMEOUT_KEY);
 				
 				empty_settings = !( !username.equals("") 
 									&& !password.equals("")
 									&& IpAddress.is_ipv4_address_valid(ipAddress)
-									&& MacAddress.is_mac_address_valid(macAddress)
-									&& pingTimeout > 0 );
+									&& MacAddress.is_mac_address_valid(macAddress) );
 			} catch(Exception e) {
 				e.printStackTrace();
 				write_empty_settings();
@@ -251,23 +240,21 @@ public class Data {
 	}
 	
 	private void write_empty_settings() {
-		write_settings("", "", "", "", NetworkDevice.TIMEOUT);
+		write_settings("", "", "", "");
 	}
 	
-	public void write_settings(String username, String password, String ipAddress, String macAddress, int pingTimeout) {
+	public void write_settings(String username, String password, String ipAddress, String macAddress) {
 		try {
 			settings_obj = new JSONObject();
 			settings_obj.put(USERNAME_KEY, username);
 			settings_obj.put(PASSWORD_KEY, password);
 			settings_obj.put(IP_ADDRESS_KEY, ipAddress);
 			settings_obj.put(MAC_ADDRESS_KEY, macAddress);
-			settings_obj.put(PING_TIMEOUT_KEY, pingTimeout);
 			
 			empty_settings = !( !username.equals("")
 								&& !password.equals("")
 								&& IpAddress.is_ipv4_address_valid(ipAddress)
-								&& MacAddress.is_mac_address_valid(macAddress)
-								&& pingTimeout > 0);
+								&& MacAddress.is_mac_address_valid(macAddress));
 			
 			BufferedWriter bw = new BufferedWriter( new OutputStreamWriter( new FileOutputStream(settings_file) ) );
 			bw.write(settings_obj.toString());

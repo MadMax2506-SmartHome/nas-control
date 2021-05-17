@@ -121,27 +121,8 @@ public class SettingsPanel extends JPanel {
 		
 		JButton btnSave = new JButton("Speichern");
 		foot.add(btnSave);
-
-		JLabel lblPingtimeout = new JLabel("Ping-Timeout (ms)");
-		GridBagConstraints gbc_lblPingtimeout = new GridBagConstraints();
-		gbc_lblPingtimeout.anchor = GridBagConstraints.WEST;
-		gbc_lblPingtimeout.insets = new Insets(0, 10, 10, 5);
-		gbc_lblPingtimeout.gridx = 0;
-		gbc_lblPingtimeout.gridy = 4;
-		main.add(lblPingtimeout, gbc_lblPingtimeout);
 		
-		txtPingTimeout = new JTextField();
-		txtPingTimeout.setColumns(10);
-		GridBagConstraints gbc_txtPingTimeout = new GridBagConstraints();
-		gbc_txtPingTimeout.insets = new Insets(0, 5, 5, 10);
-		gbc_txtPingTimeout.ipady = 5;
-		gbc_txtPingTimeout.ipadx = 5;
-		gbc_txtPingTimeout.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtPingTimeout.gridx = 1;
-		gbc_txtPingTimeout.gridy = 4;
-		main.add(txtPingTimeout, gbc_txtPingTimeout);
-		
-		ControlElements controlElements = new ControlElements(txtUsername, pwdUser, txtIpAddress, txtMacAddress, txtPingTimeout);
+		ControlElements controlElements = new ControlElements(txtUsername, pwdUser, txtIpAddress, txtMacAddress);
 		Action actions = new Action(data, main_actions, controlElements);
 		
 		btnAbort.addActionListener((e) -> actions.abort());

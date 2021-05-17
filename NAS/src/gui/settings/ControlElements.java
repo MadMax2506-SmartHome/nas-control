@@ -9,14 +9,12 @@ public class ControlElements {
 	private JPasswordField pwdUser;
 	private JTextField txtIpAddress;
 	private JTextField txtMacAddress;
-	private JTextField txtPingTimeout;
 	
-	public ControlElements(JTextField txtUsername, JPasswordField pwdUser, JTextField txtIpAddress, JTextField txtMacAddress, JTextField txtPingTimeout) {
+	public ControlElements(JTextField txtUsername, JPasswordField pwdUser, JTextField txtIpAddress, JTextField txtMacAddress) {
 		this.txtUsername = txtUsername;
 		this.pwdUser = pwdUser;
 		this.txtIpAddress = txtIpAddress;
 		this.txtMacAddress = txtMacAddress;
-		this.txtPingTimeout = txtPingTimeout;
 	}
 	
 	public void set_username(String username) {
@@ -31,9 +29,6 @@ public class ControlElements {
 	public void set_mac_address(String mac_address) {
 		txtMacAddress.setText(mac_address);
 	}
-	public void set_ping_timeout(int ping_timeout) {
-		txtPingTimeout.setText(String.valueOf(ping_timeout));
-	}
 	
 	public String get_username() {
 		return txtUsername.getText();
@@ -46,8 +41,5 @@ public class ControlElements {
 	}
 	public String get_mac_address() {
 		return txtMacAddress.getText();
-	}
-	public int get_ping_timeout() {
-		return Integer.parseInt(txtPingTimeout.getText());
 	}
 }
